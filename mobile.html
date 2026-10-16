@@ -13,7 +13,7 @@ body{
   min-height:100vh;overflow-x:hidden;
   background-image:radial-gradient(ellipse at 50% 0%, rgba(253,217,17,.08), transparent 60%),
                    linear-gradient(180deg,#101116 0%,#0b0c10 100%);
-  padding-bottom:78px;
+  padding-bottom:70px;
 }
 body::before{
   content:'';position:fixed;inset:0;
@@ -28,6 +28,7 @@ input{font-family:inherit}
 .header{
   position:sticky;top:0;z-index:50;
   background:rgba(12,13,17,.92);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid rgba(255,255,255,.05);
   padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;
   padding-top:calc(10px + env(safe-area-inset-top));
@@ -294,23 +295,61 @@ input{font-family:inherit}
 }
 .btn-steam-big img{width:15px;height:15px;object-fit:contain}
 
-/* ===== BOTTOM NAV ===== */
+/* ===== BOTTOM NAV (FIXED) ===== */
 .bottom-nav{
-  position:fixed;bottom:0;left:0;right:0;z-index:100;
-  background:rgba(12,13,17,.96);backdrop-filter:blur(14px);
+  position:fixed;
+  bottom:0;left:0;right:0;z-index:100;
+  background:rgba(12,13,17,.98);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
   border-top:1px solid rgba(255,255,255,.06);
-  display:grid;grid-template-columns:repeat(5,1fr);
-  padding:8px 6px calc(8px + env(safe-area-inset-bottom));
+  display:flex;
+  justify-content:space-around;
+  align-items:stretch;
+  padding:6px 4px calc(6px + env(safe-area-inset-bottom));
+  min-height:62px;
+  box-sizing:border-box;
 }
 .nav-item{
-  display:flex;flex-direction:column;align-items:center;gap:3px;
-  font-size:9px;font-weight:700;color:#6f6f6f;letter-spacing:.3px;
-  transition:.2s;padding:4px 0;
+  flex:1 1 0;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  padding:6px 2px 4px;
+  font-size:10px;
+  font-weight:700;
+  line-height:1;
+  letter-spacing:.2px;
+  color:#6f6f6f;
+  text-decoration:none;
+  transition:color .2s;
+  position:relative;
+  white-space:nowrap;
 }
 .nav-item.active{color:#FDD911}
-.nav-item svg{width:20px;height:20px;fill:currentColor}
+.nav-item svg{
+  width:22px;
+  height:22px;
+  fill:currentColor;
+  flex-shrink:0;
+  display:block;
+}
+.nav-item span{
+  display:block;
+  font-size:10px;
+  line-height:1;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:100%;
+}
 .nav-item .dot{
-  width:4px;height:4px;border-radius:50%;background:#FDD911;margin-top:1px;
+  width:4px;height:4px;border-radius:50%;
+  background:#FDD911;
+  margin-top:1px;
+  flex-shrink:0;
 }
 
 /* ===== COOKIE ===== */
@@ -399,7 +438,7 @@ input{font-family:inherit}
 @keyframes slideIn{from{transform:translateY(-20px);opacity:0}to{transform:translateY(0);opacity:1}}
 @keyframes fadeOut{to{transform:translateY(-20px);opacity:0}}
 
-/* ===== DESKTOP (минимальная адаптация) ===== */
+/* ===== DESKTOP ===== */
 @media(min-width:768px){
   .inv-grid,.tiles{grid-template-columns:repeat(3,1fr)}
   .wheel{width:320px;height:320px}
@@ -539,20 +578,20 @@ input{font-family:inherit}
 <nav class="bottom-nav">
   <a href="#" class="nav-item">
     <svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z"/></svg>
-    Battle
+    <span>Battle</span>
   </a>
   <a href="#" class="nav-item active">
     <svg viewBox="0 0 24 24"><path d="M12 3l8 8h-5v9h-6v-9H4z"/></svg>
-    Upgrade
+    <span>Upgrade</span>
     <span class="dot"></span>
   </a>
   <a href="#" class="nav-item">
     <svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9v5l-2 2v1h18v-1l-2-2V9c0-4-3-7-7-7zm0 20a2 2 0 002-2h-4a2 2 0 002 2z"/></svg>
-    Notify
+    <span>Notify</span>
   </a>
   <a href="#" class="nav-item">
     <svg viewBox="0 0 24 24"><path d="M5 16L3 7l5.5 3L12 4l3.5 6L21 7l-2 9H5zm2 3h10v2H7z"/></svg>
-    VIP
+    <span>VIP</span>
   </a>
 </nav>
 
@@ -614,7 +653,7 @@ function nextImg(){const im=IMGS[imgIdx%IMGS.length];imgIdx++;return im}
 
 function fmt(v){return Number(v).toLocaleString('ru-RU',{minimumFractionDigits:0,maximumFractionDigits:0})+' ₽'}
 
-/* ===== БАЗА СКИНОВ (сокращена для мобильной версии) ===== */
+/* ===== БАЗА СКИНОВ ===== */
 const RAW=[
   ['★ Butterfly Knife','Black Pearl',583000,'FN','#EB4B4B'],
   ['★ Butterfly Knife','Ruby',478000,'FN','#EB4B4B'],
