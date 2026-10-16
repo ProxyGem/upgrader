@@ -6,9 +6,6 @@
 <title>Апгрейдер предметов CS2 | Официальный Сайт UPGRADER</title>
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800&family=Tektur:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ==========================================
-   ВСЁ В ОДНОМ ФАЙЛЕ, БЕЗ ВНЕШНИХ CSS
-   ========================================== */
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
 body{font-family:'Exo 2',sans-serif;background:#101116;color:#fff;min-height:100vh;overflow-x:hidden;background-image:url('bottom-gun.webp');background-size:cover;background-position:center top;background-attachment:fixed;background-color:#0d0e12}
@@ -345,11 +342,10 @@ window.onerror = function(msg, url, line){
 
 try {
 
-/* ============ ВАЛЮТА: РУБЛИ ============ */
+/* ============ ВАЛЮТА ============ */
 function fmt(v){ return Number(v).toLocaleString('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' ₽'; }
 
 /* ============ БАЗА ПРЕДМЕТОВ (200 шт) ============ */
-/* [weapon/skin, name, price, wear, rarity] */
 const RAW = [
   // --- НОЖИ ---
   ['★ Butterfly Knife','Black Pearl',583000,'FN','#EB4B4B'],
@@ -362,7 +358,7 @@ const RAW = [
   ['★ Butterfly Knife','Fade',510000,'FN','#EB4B4B'],
   ['★ Karambit','Gamma Doppler (Emerald)',620000,'FN','#EB4B4B'],
   ['★ Talon Knife','Doppler (Ruby)',498000,'FN','#EB4B4B'],
-  // --- СНАЙПЕРСКИЕ ВИНТОВКИ ---
+  // --- AWP ---
   ['AWP','Dragon Lore',871549,'WW','#EB4B4B'],
   ['AWP','Gungnir',435552,'FN','#EB4B4B'],
   ['AWP','Medusa',318288,'FN','#EB4B4B'],
@@ -382,7 +378,7 @@ const RAW = [
   ['AWP','Capillary',1675,'MW','#8847FF'],
   ['AWP','Atheris',1256,'FN','#8847FF'],
   ['AWP','POP AWP',800,'MW','#8847FF'],
-  // --- ВИНТОВКИ ---
+  // --- AK-47 ---
   ['AK-47','Wild Lotus',312000,'FN','#EB4B4B'],
   ['AK-47','Gold Arabesque',85000,'FN','#EB4B4B'],
   ['AK-47','Fire Serpent',234528,'MW','#EB4B4B'],
@@ -405,6 +401,7 @@ const RAW = [
   ['AK-47','Phantom Disruptor',1843,'FN','#8847FF'],
   ['AK-47','Ice Coaled',1800,'FT','#8847FF'],
   ['AK-47','Safety Net',450,'FT','#8847FF'],
+  // --- M4 ---
   ['M4A4','Howl',293000,'FN','#EB4B4B'],
   ['M4A4','The Emperor',18427,'FN','#EB4B4B'],
   ['M4A4','Neo-Noir',9214,'FN','#EB4B4B'],
@@ -471,7 +468,7 @@ const RAW = [
   ['CZ75-Auto','Victoria',25000,'MW','#EB4B4B'],
   ['Dual Berettas','Melondrama',800,'FN','#8847FF'],
   ['R8 Revolver','Fade',15000,'FN','#EB4B4B'],
-  // --- ПП / ПИСТОЛЕТЫ-ПУЛЕМЁТЫ ---
+  // --- ПП / SMG ---
   ['MAC-10','Neon Rider',1843,'FN','#EB4B4B'],
   ['MAC-10','Curse',4500,'FT','#8847FF'],
   ['MAC-10','Disco Tech',8000,'FN','#EB4B4B'],
@@ -490,7 +487,7 @@ const RAW = [
   ['M249','Aztec',25000,'MW','#EB4B4B'],
   ['Nova','Hyper Beast',4500,'MW','#EB4B4B'],
   ['Sawed-Off','The Kraken',3500,'MW','#8847FF'],
-  // --- ОСТАЛЬНОЕ ОРУЖИЕ ---
+  // --- ОСТАЛЬНОЕ ---
   ['FAMAS','Roll Cage',1508,'MW','#8847FF'],
   ['FAMAS','Commemoration',18000,'FN','#EB4B4B'],
   ['SG 553','Integrale',2094,'MW','#8847FF'],
@@ -535,7 +532,7 @@ const RAW = [
   ['Sticker','Headshot Guarantee',1500,'-','#8847FF'],
   ['Sticker','See Ya Later',800,'-','#8847FF'],
   ['Sticker','Piggles',300,'-','#8847FF'],
-  // --- ОПЕРАТИВНИКИ / АГЕНТЫ ---
+  // --- АГЕНТЫ ---
   ['Agent | CT','Sir Bloody Loudmouth Darryl',6500,'-','#EB4B4B'],
   ['Agent | CT','Sir Bloody Miami Darryl',8200,'-','#EB4B4B'],
   ['Agent | CT','Cmdr. Mae "Dead Cold" Jamison',2800,'-','#EB4B4B'],
@@ -589,12 +586,12 @@ const RAW = [
   ['Agent | T','Darryl | The Professionals (Red Shirt)',2500,'-','#EB4B4B']
 ];
 
-/* ============ ИКОНКИ: ССЫЛКИ STEAM CDN ============ */
-/* Источник: ByMykel/counter-strike-image-tracker [citation:1] */
-const CDN = 'https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images';
+/* ============ ИКОНКИ: CS2CDN (работает как <img src>) ============ */
+const CDN = 'https://cs2cdn.com';
 function iconFor(wep, skin){
-  // ножи и оружие
+  // Ножи
   if(wep.includes('★')) return CDN + '/econ/default_generated/weapon_knife_default_light_png.png';
+  // Оружие
   if(wep === 'AWP') return CDN + '/econ/default_generated/weapon_awp_default_light_png.png';
   if(wep === 'AK-47') return CDN + '/econ/default_generated/weapon_ak47_default_light_png.png';
   if(wep === 'M4A4') return CDN + '/econ/default_generated/weapon_m4a1_default_light_png.png';
@@ -602,9 +599,9 @@ function iconFor(wep, skin){
   if(wep === 'USP-S') return CDN + '/econ/default_generated/weapon_usp_silencer_default_light_png.png';
   if(wep === 'Glock-18') return CDN + '/econ/default_generated/weapon_glock_default_light_png.png';
   if(wep === 'Desert Eagle') return CDN + '/econ/default_generated/weapon_deagle_default_light_png.png';
-  // наклейки
-  if(wep === 'Sticker') return CDN + '/econ/stickers/cologne2014/titan_holo.png';
-  // агенты
+  // Наклейки (пример Titan Holo)
+  if(wep === 'Sticker' && skin.includes('Titan')) return CDN + '/econ/stickers/cologne2014/titan_holo.png';
+  // Агенты (пример)
   if(wep.includes('Agent')) return CDN + '/econ/characters/customplayer_tm_professional_varf5_png.png';
   return 'unknown-item.svg';
 }
