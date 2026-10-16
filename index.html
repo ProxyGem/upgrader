@@ -11,8 +11,15 @@
    ========================================== */
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
-body{font-family:'Exo 2',sans-serif;background:#101116;color:#fff;min-height:100vh;overflow-x:hidden;background-image:url('bottom-gun.webp');background-size:cover;background-position:center top;background-attachment:fixed;background-color:#0d0e12}
-body::before{content:'';position:fixed;inset:0;background:rgba(13,14,18,.78);z-index:0;pointer-events:none}
+body{
+  font-family:'Exo 2',sans-serif;
+  background:#1a1b1f;
+  color:#fff;
+  min-height:100vh;
+  overflow-x:hidden;
+  padding-bottom:70px;
+}
+body::before{display:none}
 img,svg,span{pointer-events:none;user-select:none}
 button,a{cursor:pointer;outline:none;border:none;background:none;font-family:inherit;color:inherit}
 input{font-family:inherit}
