@@ -9,17 +9,14 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
 body{
-  font-family:'Exo 2',sans-serif;background:#0b0c10;color:#fff;
-  min-height:100vh;overflow-x:hidden;
-  background-image:radial-gradient(ellipse at 50% 0%, rgba(253,217,17,.08), transparent 60%),
-                   linear-gradient(180deg,#101116 0%,#0b0c10 100%);
+  font-family:'Exo 2',sans-serif;
+  background:#1a1b1f;
+  color:#fff;
+  min-height:100vh;
+  overflow-x:hidden;
   padding-bottom:70px;
 }
-body::before{
-  content:'';position:fixed;inset:0;
-  background:url('bottom-gun.webp') center top/cover no-repeat;
-  opacity:.12;z-index:0;pointer-events:none;
-}
+body::before{display:none}
 img,svg,span{pointer-events:none;user-select:none}
 button,a{cursor:pointer;outline:none;border:none;background:none;font-family:inherit;color:inherit}
 input{font-family:inherit}
