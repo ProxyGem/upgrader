@@ -832,8 +832,8 @@ const RAW=[
   ['Agent | T','Darryl | The Professionals (Red Shirt)',2500,'-','#EB4B4B']
 ];
 
-/* ===== ИКОНКИ STEAM CDN ===== */
-const CDN='https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images';
+/* ===== ИКОНКИ: CS2CDN ===== */
+const CDN='https://cs2cdn.com';
 function iconFor(wep,skin){
   if(wep.includes('★'))return CDN+'/econ/default_generated/weapon_knife_default_light_png.png';
   if(wep==='AWP')return CDN+'/econ/default_generated/weapon_awp_default_light_png.png';
@@ -843,7 +843,7 @@ function iconFor(wep,skin){
   if(wep==='USP-S')return CDN+'/econ/default_generated/weapon_usp_silencer_default_light_png.png';
   if(wep==='Glock-18')return CDN+'/econ/default_generated/weapon_glock_default_light_png.png';
   if(wep==='Desert Eagle')return CDN+'/econ/default_generated/weapon_deagle_default_light_png.png';
-  if(wep==='Sticker')return CDN+'/econ/stickers/cologne2014/titan_holo.png';
+  if(wep==='Sticker'&&skin.includes('Titan'))return CDN+'/econ/stickers/cologne2014/titan_holo.png';
   if(wep.includes('Agent'))return CDN+'/econ/characters/customplayer_tm_professional_varf5_png.png';
   return 'unknown-item.svg';
 }
